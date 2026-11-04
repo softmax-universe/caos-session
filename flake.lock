@@ -10,15 +10,9 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-<<<<<<< 3403d531b1416cd276117b49c0d38c46fc4e9198
-        "lastModified": 1793399953,
-        "narHash": "sha256-Dy3GbqGCF4S13zVkd3uOr51YtX9U0/BQ8kutKai+B/A=",
-        "owner": "softmax-universe",
-=======
         "lastModified": 1794526689,
         "narHash": "sha256-MLtq2mxUewXkpTQu2cmFUBOPzpEGZsHXGMER2jO08Z0=",
-        "owner": "Metta-AI",
->>>>>>> b578eae1a7dc1c1feea1b4e7712058565ca9b2e3
+        "owner": "softmax-universe",
         "repo": "caos",
         "rev": "bef8c4b7bbc05b97c6637ff42b330050fbcb942a",
         "type": "github"
