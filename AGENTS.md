@@ -204,6 +204,13 @@ Only things an error message does not teach:
   opposite and designed around it (reimplementing a fetch instead of running
   the tool that fetches). Where a worker is offline, that is its own build
   choice (`cargo` builds `--offline`), not a property of the container.
+- **Never end a turn while waiting on a caos run.** After `start`, keep
+  calling `result` in the same turn until the call finishes: a test suite
+  takes minutes, not hours. Ending the turn to "check back later" is how a
+  session once went silent for three hours. A scheduled wakeup only fires in
+  `/loop` mode, so it never came, and nothing else re-invokes the session
+  until the user writes. Waiting longer than a turn can last needs a real
+  scheduled message back into the session (`send_later`), not a wakeup.
 - **Subagents have no file tools** and cannot read the local file a
   too-large tool result is saved to. Do that reading yourself.
 - **Edit and publish a source tree** (`sources/<repo>/...`), not
