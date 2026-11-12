@@ -1,10 +1,17 @@
-# The root expression of a caos client repo: mount caos' `std/` into THIS
-# tree's evaluation result, so everything below can name `caos-std/<entry>`.
+# The root expression of this caos client repo: mount caos' `std/` as THIS
+# directory's evaluation result, so everything below can name `caos-std/<entry>`.
+#
+# This directory holds the whole pin -- this expression, flake.nix and
+# flake.lock -- and nothing else, which is the point. The loader is run over
+# `--in:@=.`, and a tree's expression is cached on that tree. At the repo root
+# that tree is the whole session and changes with every tool call, so the loader
+# re-ran, as a worker job, before every lookup. Here its input is three files
+# that do not change while the session does, so it is answered from cache.
+# `--output-path=.` replaces this directory with std; the loader still reads
+# flake.nix and flake.lock from `--in` to check the pin first.
 #
 # Nothing of caos is committed here. The mount exists only in the evaluated
-# tree — content-addressed, deduped, never on disk — which is why `caos-std/`
-# is gitignored and why this repo stays a handful of text files however large
-# caos gets.
+# tree -- content-addressed, deduped, never on disk.
 #
 # ONE LINE, and it has to be: a directive is a line, and there are no backslash
 # continuations. design/flake-inputs.md wraps this same expression across four
@@ -19,4 +26,4 @@
 #
 # Both revs must equal what flake.lock locks for `--input=caos`. The loader
 # checks exactly that and refuses the evaluation if they differ.
-run --base:@@=github:Metta-AI/caos?rev=bef8c4b7bbc05b97c6637ff42b330050fbcb942a&dir=std/flake-input-loader --in:@=. --expr=$CAOS_EXPR --input=caos --input-tree:@@=github:Metta-AI/caos?rev=bef8c4b7bbc05b97c6637ff42b330050fbcb942a&dir=std --output-path=caos-std
+run --base:@@=github:softmax-universe/caos?rev=82c4b9246ebce7a27832ca9e63c522420932b84c&dir=std/flake-input-loader --in:@=. --expr=$CAOS_EXPR --input=caos --input-tree:@@=github:softmax-universe/caos?rev=82c4b9246ebce7a27832ca9e63c522420932b84c&dir=std --output-path=.
