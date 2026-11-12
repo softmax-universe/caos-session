@@ -229,8 +229,9 @@ by the environment's `--secret-readers`. With caos pinned at `1eb6241c` or
 later, the first prompt's `secret readers:` line (and `caos_status`) shows
 which key that is, or that there is none.
 
-To move to a newer caos: `nix flake update caos`, then set the two `rev=`
-values in `.caos-expr` to the new commit. They must agree with `flake.lock` —
+To move to a newer caos: update `caos-std/flake.lock` (`nix flake update caos`,
+or the `caos-std/flake-update` tool with `input` and `rev`), then set the two
+`rev=` values in `caos-std/.caos-expr` to the new commit. They must agree with `flake.lock` —
 `std/flake-input-loader` refuses the evaluation otherwise and names both
 revisions, so this cannot go wrong quietly. Pin only a commit that already has
 a published build: the client comes from that commit's release and the tools
