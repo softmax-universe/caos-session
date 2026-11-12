@@ -77,11 +77,17 @@ re-pin after. `gh run list --branch <branch>` says when.
 ## What each file does
 
 ```
-flake.nix / flake.lock   the pin: which caos, by commit
-.caos-expr               mounts caos' std/ at caos-std/ (evaluated only, never on disk)
+caos-std/flake.nix       the pin: which caos, by commit
+caos-std/flake.lock      (the lock that records the commit)
+caos-std/.caos-expr      replaces caos-std/ with caos' std/ (evaluated only, never on disk)
 AGENTS.md                what the agent is told at the start of every session
-.gitignore               /caos-std/, which must not exist as a real directory
 ```
+
+The pin lives in `caos-std/` rather than at the root so that the loader runs
+over a directory that does not change while a session does, and is answered
+from cache instead of re-run before every tool call. A repo that wants a flake
+of its own at the root can keep the pin there instead, with `--output-path=caos-std`
+and a `.gitignore` for the mount point; the setup scripts read either.
 
 Add your own `caos-tools/` here and the agent is offered them alongside the
 standard set.
