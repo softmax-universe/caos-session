@@ -51,11 +51,11 @@ flaky test in its scheduler"*.
 ## Moving the pin
 
 ```sh
-nix flake update caos
+cd caos-std && nix flake update caos
 ```
 
-then set the two `rev=` values in `.caos-expr` to the commit `flake.lock` now
-records. They must match: `std/flake-input-loader` compares them and refuses
+then set the two `rev=` values in `caos-std/.caos-expr` to the commit
+`caos-std/flake.lock` now records. They must match: `std/flake-input-loader` compares them and refuses
 the evaluation if they differ, naming both revisions.
 
 **Then change the environment's setup script** — bumping the date on its
