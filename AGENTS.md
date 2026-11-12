@@ -10,8 +10,9 @@ tools do not read this container's filesystem — they read the conversation
 tree, which starts out holding almost nothing.
 
 List it with `ls` (with no path it lists the root). A fresh conversation holds
-`.caos/` and this client repo's own handful of files (`AGENTS.md`, `flake.nix`,
-`.caos-expr` and so on) — no code to work on. That is what it is supposed to
+`.caos/` and this client repo's own handful of files (`AGENTS.md` and so on),
+with `caos-std/` being caos' tools rather than a directory of this repo — no
+code to work on. That is what it is supposed to
 look like, not a sign that anything went wrong.
 
 ## Start by importing what you were asked to work on
