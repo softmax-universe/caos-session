@@ -215,8 +215,13 @@ Only things an error message does not teach:
 
 | file | what it decides |
 |---|---|
-| `flake.nix` + `flake.lock` | which caos — the client binary, the tools, the tree |
-| `.caos-expr` | mounts caos' `std/` at `caos-std/` in the evaluated tree |
+| `caos-std/flake.nix` + `caos-std/flake.lock` | which caos — the client binary, the tools, the tree |
+| `caos-std/.caos-expr` | replaces `caos-std/` with caos' `std/` in the evaluated tree |
+
+The pin lives in `caos-std/` on purpose. A tree's expression is cached on that
+tree, and the repo root changes with every tool call, so an expression kept at
+the root re-ran before every lookup; kept here, in a directory that does not
+change during a session, it is answered from cache.
 
 Secrets, such as a GitHub token, are not configured here. They live in the
 user's secret store on the caos server, and the session presents the key named
