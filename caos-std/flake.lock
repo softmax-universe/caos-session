@@ -11,10 +11,10 @@
       },
       "locked": {
         "lastModified": 1794526689,
-        "narHash": "sha256-MLtq2mxUewXkpTQu2cmFUBOPzpEGZsHXGMER2jO08Z0=",
+        "narHash": "sha256-VF2NQ+ELI6hfImjeh5KYBxInbdpdJ6S6mo38vKLLarU=",
         "owner": "softmax-universe",
         "repo": "caos",
-        "rev": "bef8c4b7bbc05b97c6637ff42b330050fbcb942a",
+        "rev": "82c4b9246ebce7a27832ca9e63c522420932b84c",
         "type": "github"
       },
       "original": {
